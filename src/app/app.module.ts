@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HypertensionComponent } from './components/hypertension/hypertension.component';
 import { KidneyComponent } from './components/kidney/kidney.component';
 import { AppRoutes } from './app.routes';
+import {BloodpressureService} from './services/bloodpressure.service';
 
 @NgModule({
   declarations: [
@@ -16,10 +17,10 @@ import { AppRoutes } from './app.routes';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutes,
-    MatTableModule
   ],
-  providers: [],
+  providers: [BloodpressureService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

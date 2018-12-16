@@ -1,24 +1,21 @@
-<mat-table class="bptable mat-elevation-z8" [dataSource]="dataSource">
-
-  <ng-container matColumnDef="atDate">
-    <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
-    <mat-cell  *matCellDef="let bpData"> {{bpData.atDate}}</mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="systolic">
-    <mat-header-cell *matHeaderCellDef>Systolic</mat-header-cell>
-    <mat-cell class="systolic-cell"
-         *matCellDef="let bpData"> {{bpData.SysBP}}</mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="diastolic">
-    <mat-header-cell *matHeaderCellDef>Diastolic</mat-header-cell>
-    <mat-cell class="diastolic-cell"
-         *matCellDef="let bpData"> {{bpData.DiaBP}}</mat-cell>
-  </ng-container>
-
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-
-  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-
-</mat-table>
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--4-col"></div>
+  <div class="mdl-cell mdl-cell--4-col">
+    <form style="margin-bottom: 5px;" (submit)="add()">
+      <input name="Date" [(ngModel)]="atDate" class="mdl-textfield__input" type="text" placeholder="Add Date" />
+      <input name="Systolic" [(ngModel)]="systolic" class="mdl-textfield__input" type="text" placeholder="Add Systolic pressure" />
+      <input name="Diastolic" [(ngModel)]="diastolic" class="mdl-textfield__input" type="text" placeholder="Add Diastolic pressure" />
+      <input type="submit" value="Add">
+    </form>
+    <table class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp" style="width: 100%;">
+      <tbody>
+      <tr *ngFor="let bp of bpData">
+        <td class="mdl-data-table__cell--non_numeric">{{bp.atDate}}</td>
+        <td class="mdl-data-table__cell--non_numeric">{{bp.SysBP}}</td>
+        <td class="mdl-data-table__cell--non_numeric">{{bp.DiaBP}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mdl-cell mdl-cell==4=col"></div>
+</div>
