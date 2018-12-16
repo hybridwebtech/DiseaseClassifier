@@ -1,0 +1,24 @@
+<mat-table class="bptable mat-elevation-z8" [dataSource]="dataSource">
+
+  <ng-container matColumnDef="atDate">
+    <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+    <mat-cell  *matCellDef="let bpData"> {{bpData.atDate}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="systolic">
+    <mat-header-cell *matHeaderCellDef>Systolic</mat-header-cell>
+    <mat-cell class="systolic-cell"
+         *matCellDef="let bpData"> {{bpData.SysBP}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="diastolic">
+    <mat-header-cell *matHeaderCellDef>Diastolic</mat-header-cell>
+    <mat-cell class="diastolic-cell"
+         *matCellDef="let bpData"> {{bpData.DiaBP}}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+</mat-table>
