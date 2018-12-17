@@ -9,11 +9,11 @@ import { KidneydiseaseService } from '../../services/kidneydisease.service';
 export class KidneydiseaseComponent implements OnInit {
 
   kidneyData = Array<{}>();
-
-  constructor(private service: KidneydiseaseService) { }
-
   atDate: string;
   eGFR: number;
+  result: string;
+
+  constructor(private service: KidneydiseaseService) { }
 
   ngOnInit() {
     this.kidneyData = this.service.get();
@@ -21,5 +21,6 @@ export class KidneydiseaseComponent implements OnInit {
 
   add() {
     this.service.add( this.eGFR, this.atDate );
+    this.result = this.service.result;
   }
 }
