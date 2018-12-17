@@ -14,7 +14,7 @@ export function kidneyFunctionCalculator( kidneyData )
         let ad = new Date(a.atDate);
         let bd = new Date(b.atDate);
         return bd.getTime() - ad.getTime();
-    } );
+    } ).reverse();
 
     return calculateLatestStatus( sortedArray )
         .join( checkForConsecutiveGFRDrops( sortedArray ) );
@@ -22,9 +22,9 @@ export function kidneyFunctionCalculator( kidneyData )
 
 function calculateLatestStatus( sortedArray )
 {
-    var latestGFR = sortedArray[0];
+    const latestGFR = sortedArray[0];
 
-    var latestClassification = "Kidney Failure";
+    let latestClassification = "Kidney Failure";
     if ( latestGFR.eGFR >= 90 )
     {
         latestClassification = "Normal";
@@ -68,7 +68,7 @@ function checkForConsecutiveGFRDrops( sortedArray )
 
             if ( percentChange >= 20.0 )
             {
-                statusArray.append( "Consecutive eGFR drop: " + percentChange + ", between " + prevReading.atDate + "(" + prevReading.eGFR +
+                statusArray.push( "Consecutive eGFR drop: " + percentChange + ", between " + prevReading.atDate + "(" + prevReading.eGFR +
                     ") and " + currReading.atDate + "(" + currReading.eGFR + ")" );
             }
         }
