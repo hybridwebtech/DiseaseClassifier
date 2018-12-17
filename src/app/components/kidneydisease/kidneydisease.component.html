@@ -1,0 +1,19 @@
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--4-col"></div>
+  <div class="mdl-cell mdl-cell--4-col">
+    <form style="margin-bottom: 5px;" (submit)="add()">
+      <input name="Date" [(ngModel)]="atDate" class="mdl-textfield__input" type="text" placeholder="Add Date" />
+      <input name="eGFR" [(ngModel)]="eGFR" class="mdl-textfield__input" type="text" placeholder="Add eGFR" />
+      <input type="submit" value="Add">
+    </form>
+    <table class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp" style="width: 100%;">
+      <tbody>
+      <tr *ngFor="let rec of kidneyData">
+        <td class="mdl-data-table__cell--non_numeric">{{rec.atDate}}</td>
+        <td class="mdl-data-table__cell--non_numeric">{{rec.eGFR}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mdl-cell mdl-cell==4=col"></div>
+</div>

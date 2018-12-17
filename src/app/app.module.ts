@@ -4,23 +4,24 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HypertensionComponent } from './components/hypertension/hypertension.component';
-import { KidneyComponent } from './components/kidney/kidney.component';
 import { AppRoutes } from './app.routes';
-import {BloodpressureService} from './services/bloodpressure.service';
+import { BloodpressureService } from './services/bloodpressure.service';
+import { KidneydiseaseComponent } from './components/kidneydisease/kidneydisease.component';
+import { KidneydiseaseService } from './services/kidneydisease.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     HypertensionComponent,
-    KidneyComponent
+    KidneydiseaseComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutes,
   ],
-  providers: [BloodpressureService],
+  providers: [BloodpressureService, KidneydiseaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

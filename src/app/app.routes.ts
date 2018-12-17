@@ -4,7 +4,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { HypertensionComponent } from './components/hypertension/hypertension.component';
 
-import { KidneyComponent } from './components/kidney/kidney.component';
+import { KidneydiseaseComponent } from './components/kidneydisease/kidneydisease.component';
 
 const routes: Routes = [
   {
@@ -16,8 +16,8 @@ const routes: Routes = [
     component: HypertensionComponent
   },
   {
-    path: 'kidney',
-    component: KidneyComponent
+    path: 'kidneydisease',
+    component: KidneydiseaseComponent
   }
 ];
 
