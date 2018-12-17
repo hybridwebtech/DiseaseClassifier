@@ -1,6 +1,4 @@
-let testKidneyData = [{eGFR: 65, atDate: '2018/10/31'}, {eGFR: 70, atDate: '2018/10/20'}];
-
-function kidneyFunctionCalculator( kidneyData )
+export function kidneyFunctionCalculator( kidneyData )
 {
     if (!Array.isArray(kidneyData))
     {
@@ -78,5 +76,3 @@ function checkForConsecutiveGFRDrops( sortedArray )
 
     return statusArray;
 }
-
-console.log( kidneyFunctionCalculator( testKidneyData ) );

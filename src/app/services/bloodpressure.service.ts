@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { hypertensionCalculator } from '../components/classifiers/BPClassifier';
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +16,9 @@ export class BloodpressureService {
 
   get() {
     return this.bpData;
+  }
+
+  getStatus() {
+    return hypertensionCalculator(this.bpData);
   }
 }

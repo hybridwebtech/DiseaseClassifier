@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { kidneyFunctionCalculator } from '../components/classifiers/KidneyDiseaseClassifier';
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +16,9 @@ export class KidneydiseaseService {
 
   get() {
     return this.kidneyData;
+  }
+
+  getStatus() {
+    return kidneyFunctionCalculator( this.kidneyData );
   }
 }

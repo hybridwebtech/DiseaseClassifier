@@ -8,13 +8,17 @@ import { AppRoutes } from './app.routes';
 import { BloodpressureService } from './services/bloodpressure.service';
 import { KidneydiseaseComponent } from './components/kidneydisease/kidneydisease.component';
 import { KidneydiseaseService } from './services/kidneydisease.service';
+import { BpsummaryComponent } from './components/dashboard/bpsummary.component';
+import { KidneysummaryComponent } from './components/dashboard/kidneysummary.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     HypertensionComponent,
-    KidneydiseaseComponent
+    KidneydiseaseComponent,
+    BpsummaryComponent,
+    KidneysummaryComponent
   ],
   imports: [
     BrowserModule,

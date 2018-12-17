@@ -1,6 +1,4 @@
-let testBPData = [ {SysBP: 120, DiaBP: 90, atDate: '2018/10/31'},{SysBP: 115, DiaBP: 100, atDate: '2018/10/20'}];
-
-function hypertensionCalculator( bpData )
+export function hypertensionCalculator( bpData )
 {
     if (!Array.isArray(bpData))
     {
@@ -39,5 +37,3 @@ function hypertensionCalculator( bpData )
 
     return "Latest BP at " + latestBP.atDate + " Systolic:" + latestBP.SysBP + "; Diastolic: " + latestBP.DiaBP + "; Classification: " + classification ;
 }
-
-console.log( hypertensionCalculator( testBPData ) );
