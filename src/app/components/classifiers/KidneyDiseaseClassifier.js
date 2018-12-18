@@ -1,13 +1,19 @@
+/**
+ * Construct a kidney function summary, containing latest eGFR reading
+ * plus a listing of all significant (>20%) drops in eGFR between consecutive readings
+ * @param kidneyData - array of eGFR readings, format {eGFR: float, atDate: date string 'YYYY/MM/DD/'}
+ * @returns Array<string> - the summary information
+ */
 export function kidneyFunctionCalculator( kidneyData )
 {
     if (!Array.isArray(kidneyData))
     {
-        return "Input data is not an array. Cannot compute GFR classification.";
+        return ['Input data is not an array. Cannot compute GFR classification.'];
     }
 
     if (kidneyData.length === 0)
     {
-        return "Input array does not contain any data. Cannot compute GFR classification";
+        return ['Input array does not contain any data. Cannot compute GFR classification'];
     }
 
     let statusArray = calculateLatestStatus( kidneyData );
@@ -17,9 +23,14 @@ export function kidneyFunctionCalculator( kidneyData )
     return statusArray;
 }
 
-function calculateLatestStatus( sortedArray )
+/**
+ * Find the most recent eGFR reading and return it along with a classification of the eGFR value
+ * @param kidneyData - array of eGFR readings, format {eGFR: float, atDate: date string 'YYYY/MM/DD/'}
+ * @returns Array<string> - the summary information
+ */
+function calculateLatestStatus( kidneyData )
 {
-    const latestGFR = sortedArray[sortedArray.length - 1];
+    const latestGFR = kidneyData[kidneyData.length - 1];
 
     let latestClassification = "Kidney Failure";
     if ( latestGFR.eGFR >= 90 )
@@ -48,25 +59,34 @@ function calculateLatestStatus( sortedArray )
     return [latestStatus];
 }
 
-function checkForConsecutiveGFRDrops( sortedArray )
+/**
+ * Locate all consecutive eGFR records where there is a drop of more than 20% between records
+ * @param kidneyData - array of eGFR readings, format {eGFR: float, atDate: date string 'YYYY/MM/DD/'}
+ * @returns Array<string> - the summary information, one string value for each pair of consecutive eGFR
+ * records with a drop in eGFR of 20% or more.
+ */
+function checkForConsecutiveGFRDrops( kidneyData )
 {
     let statusArray = new Array();
 
-    if ( sortedArray.length > 0 )
+    if ( kidneyData.length > 0 )
     {
-        for ( var i = 1; i < sortedArray.length; i++ )
+        for ( let i = 1; i < kidneyData.length; i++ )
         {
-            let prevReading = sortedArray[i - 1];
-            let currReading = sortedArray[i];
+            let prevReading = kidneyData[i - 1];
+            let currReading = kidneyData[i];
 
-            var deltaGFR = currReading.eGFR - prevReading.eGFR;
-
-            var percentChange = (deltaGFR/sortedArray[i].eGFR)*100.0;
-
-            if ( percentChange <= -20.0 )
+            if ( prevReading.eGFR > 0)
             {
-                statusArray.push( "Consecutive eGFR drop: " + Math.abs( percentChange ).toPrecision(2) + "%, between " +
-                  prevReading.atDate + " (" + prevReading.eGFR + ") and " + currReading.atDate + " (" + currReading.eGFR + ")" );
+              let deltaGFR = currReading.eGFR - prevReading.eGFR;
+
+              let percentChange = (deltaGFR / prevReading.eGFR) * 100.0;
+
+              if ( percentChange <= -20.0 )
+              {
+                statusArray.push( "Consecutive eGFR drop: " + Math.abs( percentChange ).toPrecision( 2 ) + "%, between " +
+                    prevReading.atDate + " (" + prevReading.eGFR + ") and " + currReading.atDate + " (" + currReading.eGFR + ")" );
+              }
             }
         }
     }

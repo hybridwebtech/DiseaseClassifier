@@ -6,7 +6,8 @@ import { hypertensionCalculator } from '../components/classifiers/BPClassifier';
 })
 export class BloodpressureService {
 
-  bpData = [ {SysBP: 120, DiaBP: 90, atDate: '2018/10/31'}, {SysBP: 115, DiaBP: 100, atDate: '2018/10/20'}];
+  // bpData = [ {SysBP: 120, DiaBP: 90, atDate: '2018/10/31'}, {SysBP: 115, DiaBP: 100, atDate: '2018/10/20'}];
+  bpData = [];
   result = '';
 
   constructor() { }

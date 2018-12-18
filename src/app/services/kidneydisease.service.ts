@@ -6,7 +6,8 @@ import { kidneyFunctionCalculator } from '../components/classifiers/KidneyDiseas
 })
 export class KidneydiseaseService {
 
-  kidneyData = [{eGFR: 65, atDate: '2018/10/31'}, {eGFR: 70, atDate: '2018/10/20'}];
+  // kidneyData = [{eGFR: 65, atDate: '2018/10/31'}, {eGFR: 70, atDate: '2018/10/20'}];
+  kidneyData = [];
 
   result = '';
 
