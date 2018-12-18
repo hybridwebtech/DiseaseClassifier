@@ -13,7 +13,7 @@ export class KidneydiseaseService {
   constructor() { }
 
   add(eGFR, atDate) {
-    this.result = ''
+    this.result = '';
     if (eGFR.length > 0 && atDate.length > 0) {
 
       const testVal = parseFloat(eGFR);

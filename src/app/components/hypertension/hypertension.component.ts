@@ -9,13 +9,13 @@ import { BloodpressureService } from '../../services/bloodpressure.service';
 })
 export class HypertensionComponent implements OnInit {
   bpData = Array<{}>();
-
-  constructor(private service: BloodpressureService) {
-  }
-
   atDate: string;
   systolic: number;
   diastolic: number;
+  result: string;
+
+  constructor(private service: BloodpressureService) {
+  }
 
   ngOnInit() {
     this.bpData = this.service.get();
@@ -23,5 +23,6 @@ export class HypertensionComponent implements OnInit {
 
   add() {
     this.service.add( this.systolic, this.diastolic, this.atDate );
+    this.result = this.service.result;
   }
 }

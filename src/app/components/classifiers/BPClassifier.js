@@ -10,13 +10,7 @@ export function hypertensionCalculator( bpData )
         return "Input array does not contain any data. Cannot compute BP classification";
     }
 
-    let sortedArray = bpData.sort( (a, b) => {
-        let ad = new Date(a.atDate);
-        let bd = new Date(b.atDate);
-        return bd.getTime() - ad.getTime();
-    } );
-
-    let latestBP = sortedArray[0];
+    let latestBP = bpData[bpData.length - 1];
 
     let classification = "No Hypertension";
 

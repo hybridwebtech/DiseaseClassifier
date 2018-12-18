@@ -12,6 +12,7 @@ export class BloodpressureService {
   constructor() { }
 
   add(systolic, diastolic, atDate) {
+    this.result = '';
     if (systolic.length === 0 ) {
       this.result = 'missing systolic value';
       return;

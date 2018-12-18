@@ -10,19 +10,16 @@ export function kidneyFunctionCalculator( kidneyData )
         return "Input array does not contain any data. Cannot compute GFR classification";
     }
 
-    let sortedArray = kidneyData.sort( (a, b) => {
-        let ad = new Date(a.atDate);
-        let bd = new Date(b.atDate);
-        return bd.getTime() - ad.getTime();
-    } ).reverse();
+    let statusArray = calculateLatestStatus( kidneyData );
+    let dropArray = checkForConsecutiveGFRDrops( kidneyData );
+    dropArray.forEach( (drop) => statusArray.push('\n' + drop) );
 
-    return calculateLatestStatus( sortedArray )
-        .join( checkForConsecutiveGFRDrops( sortedArray ) );
+    return statusArray;
 }
 
 function calculateLatestStatus( sortedArray )
 {
-    const latestGFR = sortedArray[0];
+    const latestGFR = sortedArray[sortedArray.length - 1];
 
     let latestClassification = "Kidney Failure";
     if ( latestGFR.eGFR >= 90 )
@@ -66,10 +63,10 @@ function checkForConsecutiveGFRDrops( sortedArray )
 
             var percentChange = (deltaGFR/sortedArray[i].eGFR)*100.0;
 
-            if ( percentChange >= 20.0 )
+            if ( percentChange <= -20.0 )
             {
-                statusArray.push( "Consecutive eGFR drop: " + percentChange + ", between " + prevReading.atDate + "(" + prevReading.eGFR +
-                    ") and " + currReading.atDate + "(" + currReading.eGFR + ")" );
+                statusArray.push( "Consecutive eGFR drop: " + Math.abs( percentChange ).toPrecision(2) + "%, between " +
+                  prevReading.atDate + " (" + prevReading.eGFR + ") and " + currReading.atDate + " (" + currReading.eGFR + ")" );
             }
         }
     }
